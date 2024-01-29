@@ -13,7 +13,7 @@ public class dataBaseController {
     private static dataBaseController dataBaseCo;
     private   BPlusTree<String,String[]> table;
     private static    Database base;
-////////////////////////////////////////
+
     public  String addTable(String name, String capital,String keyBase) {
         base.addTable(name, new BPlusTree<>(4,capital,name,keyBase));
         return "table by "+name+" is created"+"\n"+ "capital is " +capital;
@@ -79,10 +79,31 @@ public class dataBaseController {
     public String allRows(){
 
         String result="";
-        for(String[] key:table.getAllValues()){
+        for(String[] key:table.getAllValues()
+        ){
             result+= Arrays.toString(key) +"\n";
         }
         return result;
+    }
+    public String changeBase(String newBase){
+        int newIndex = getCapital().indexOf(newBase);
+        String oldBase=table.getKeyBase();
+        if(newIndex<0){
+            return "base not found";
+        }
+       String capitals="";
+       for(String str:table.getCapital()){
+           capitals+=" "+ str;
+       }
+
+        BPlusTree<String,String[]> newTable=new BPlusTree<>(4,capitals,table.getTableName(),newBase);
+      for(String str:table.allKeys()){
+          String[] arr=table.search(str);
+          newTable.insert(arr[newIndex],arr);
+      }
+       table=newTable;
+       base.addTable(table.getTableName(),newTable);
+       return "base changed from "+oldBase+" to "+newBase;
     }
 
 

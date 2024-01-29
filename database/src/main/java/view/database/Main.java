@@ -78,6 +78,14 @@ public class Main {
    public static void allRows(){
        System.out.println(dBController.allRows());
    }
+   public static void changeBase(){
+       System.out.println("the keybase is : "+dBController.keyBase());
+       System.out.println(dBController.getCapital());
+       System.out.println("enter new keybase");
+       String newKeyBase=sc.nextLine();
+       System.out.println(dBController.changeBase(newKeyBase));
+
+   }
 
 
 
@@ -94,8 +102,8 @@ public class Main {
             System.out.println("6. Search Row");
             System.out.println("7. query");
             System.out.println("8. All Rows");
-            System.out.println("9. Exit");
-
+            System.out.println("9. Change Base");
+            System.out.println("10. Exit");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
             sc.nextLine();
@@ -126,6 +134,9 @@ public class Main {
                     allRows();
                     break;
                 case 9:
+                  changeBase();
+                    break;
+                case 10 :
                     exit = true;
                     break;
                 default:

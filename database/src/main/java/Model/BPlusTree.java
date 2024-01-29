@@ -3,13 +3,17 @@ package Model;
 import java.util.*;
 
 public class BPlusTree<K extends Comparable<? super K>, V> {
-    private String keyBase;
-    private int keyBaseIndex;
-    private List<String> Capital;
-    private String tableName;
-    private int conterIndex=0;
+    private final String keyBase;
+    private final int keyBaseIndex;
+    private final List<String> Capital;
+    private final String tableName;
+    private final List<K> keyList;
+    private final int conterIndex=0;
     private K min;
     private K max;
+    public List<K> allKeys() {
+        return keyList;
+    }
 
 
     private static final int DEFAULT_BRANCHING_FACTOR = 128;
@@ -37,7 +41,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
         return conterIndex;
     }
 
-    public static enum RangePolicy {
+    public enum RangePolicy {
         EXCLUSIVE, INCLUSIVE
     }
 
@@ -46,13 +50,12 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
     }
 
 
-    public BPlusTree(int branchingFactor,String string,String name,String keybase) {
+    public BPlusTree(int branchingFactor,String capital,String name,String keybase) {
         tableName =name;
         keyBase=keybase;
-
-            Capital= List.of(string.split(" "));
+            Capital= List.of(capital.split(" "));
             keyBaseIndex=Capital.indexOf(keybase);
-
+            keyList = new ArrayList<>();
 
         if (branchingFactor <= 2)
             throw new IllegalArgumentException("Illegal branching factor: "
@@ -73,6 +76,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
 
 
     public void insert(K key, V value) {
+        keyList.add(key);
         if(min==null|| max ==null){
             min=key;
             max=key;
@@ -93,7 +97,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
 
     public String toString() {
         Queue<List<Node>> queue = new LinkedList<List<Node>>();
-        queue.add(Arrays.asList(root));
+        queue.add(Collections.singletonList(root));
         StringBuilder sb = new StringBuilder();
         while (!queue.isEmpty()) {
             Queue<List<Node>> nextQueue = new LinkedList<List<Node>>();
