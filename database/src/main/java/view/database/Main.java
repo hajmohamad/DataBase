@@ -38,6 +38,22 @@ public class Main {
        String deleteOrder=sc.nextLine();
        System.out.println(dBController.deleteRow(deleteOrder));
    }
+   public static void editRow(){
+       System.out.println("enter which row do you want to delete : (base delete is) "+dBController.keyBase());
+       String key=sc.nextLine();
+       System.out.println(dBController.getCapital());
+       System.out.println(dBController.searchRow(key));
+       System.out.println("which Capital Do you want to edit ?");
+       String capt=sc.nextLine();
+       System.out.println("enter new data : ");
+       String newData=sc.nextLine();
+       System.out.println("new data is : "+dBController.editRow(key,capt,newData));
+
+
+
+
+
+   }
 
 
 
@@ -47,6 +63,7 @@ public class Main {
         choseTable();
         addRow();
         deleteRow();
+        editRow();
 
 
 

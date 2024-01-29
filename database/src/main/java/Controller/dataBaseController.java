@@ -56,6 +56,16 @@ public class dataBaseController {
     public String keyBase(){
        return table.getKeyBase();
     }
+    public String searchRow(String orderYouSearch){
+        return Arrays.toString(table.search(orderYouSearch));
+
+    }
+   public String editRow(String key,String capital,String newData){
+        String[] value = table.search(key);
+        value[getCapital().indexOf(capital)]=newData;
+        table.insert(key,value);
+        return Arrays.toString(table.search(key));
+    }
 
 
 
