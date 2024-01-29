@@ -9,24 +9,39 @@ import java.util.List;
 import java.util.Queue;
 
 public class BPlusTree<K extends Comparable<? super K>, V> {
+    private String keyBase;
+    private int keyBaseIndex;
+    private List<String> Capital;
+    private String tableName;
+
+
+    private static final int DEFAULT_BRANCHING_FACTOR = 128;
+
+    private final int branchingFactor;
+    private Node root;
+
+    public int getKeyBaseIndex() {
+        return keyBaseIndex;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
 
     public static enum RangePolicy {
         EXCLUSIVE, INCLUSIVE
     }
 
-
-    private static final int DEFAULT_BRANCHING_FACTOR = 128;
-
-    private int branchingFactor;
-
-
-    private Node root;
-
-    public BPlusTree() {
-        this(DEFAULT_BRANCHING_FACTOR);
+    public List<String> getCapital() {
+        return Capital;
     }
 
-    public BPlusTree(int branchingFactor) {
+
+    public BPlusTree(int branchingFactor,String string,String name,String keybase) {
+        tableName =name;
+        keyBase=keybase;
+         Capital= List.of(string.split(" "));
+         keyBaseIndex=Capital.indexOf(keybase);
         if (branchingFactor <= 2)
             throw new IllegalArgumentException("Illegal branching factor: "
                     + branchingFactor);
@@ -40,9 +55,8 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
     }
 
 
-    public List<V> searchRange(K key1, RangePolicy policy1, K key2,
-                               RangePolicy policy2) {
-        return root.getRange(key1, policy1, key2, policy2);
+    public List<V> searchRange(K key1, K key2) {
+        return root.getRange(key1,RangePolicy.INCLUSIVE , key2,RangePolicy.INCLUSIVE );
     }
 
 
