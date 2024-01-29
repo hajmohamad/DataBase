@@ -1,18 +1,15 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BPlusTree<K extends Comparable<? super K>, V> {
     private String keyBase;
     private int keyBaseIndex;
     private List<String> Capital;
     private String tableName;
+    private int conterIndex=0;
+    private K min;
+    private K max;
 
 
     private static final int DEFAULT_BRANCHING_FACTOR = 128;
@@ -27,9 +24,17 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
     public String getTableName() {
         return tableName;
     }
+    public List<V> getAllValues() {
+
+        return searchRange(min, max);
+    }
 
     public String getKeyBase() {
         return keyBase;
+    }
+
+    public int getConterIndex() {
+        return conterIndex;
     }
 
     public static enum RangePolicy {
@@ -44,8 +49,11 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
     public BPlusTree(int branchingFactor,String string,String name,String keybase) {
         tableName =name;
         keyBase=keybase;
-         Capital= List.of(string.split(" "));
-         keyBaseIndex=Capital.indexOf(keybase);
+
+            Capital= List.of(string.split(" "));
+            keyBaseIndex=Capital.indexOf(keybase);
+
+
         if (branchingFactor <= 2)
             throw new IllegalArgumentException("Illegal branching factor: "
                     + branchingFactor);
@@ -65,6 +73,16 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
 
 
     public void insert(K key, V value) {
+        if(min==null|| max ==null){
+            min=key;
+            max=key;
+        }
+        if (key.compareTo(min) < 0){
+            min=key;
+        }
+        if(key.compareTo(max)>0){
+            max =key;
+        }
         root.insertValue(key, value);
     }
 

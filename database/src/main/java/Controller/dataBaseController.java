@@ -40,9 +40,11 @@ public class dataBaseController {
         return dataBaseCo;}
     public String addRow(String str){
         String[] arr=str.split(" ");
+        if(arr.length==table.getCapital().size()){
         String key=arr[table.getKeyBaseIndex()];
         table.insert(key,arr);
-        return "row added"+"\n"+" data is :"+ Arrays.toString(table.search(key));
+        return "row added"+"\n"+" data is :"+ Arrays.toString(table.search(key));}
+        return "your input data isvalid";
 
     }
     public String deleteRow(String str){
@@ -66,6 +68,23 @@ public class dataBaseController {
         table.insert(key,value);
         return Arrays.toString(table.search(key));
     }
+    public String query(String start, String end){
+        String result="";
+        for(String[] key:table.searchRange(start,end)){
+            result+= Arrays.toString(key) +"\n";
+        }
+        return result;
+
+    }
+    public String allRows(){
+
+        String result="";
+        for(String[] key:table.getAllValues()){
+            result+= Arrays.toString(key) +"\n";
+        }
+        return result;
+    }
+
 
 
 
