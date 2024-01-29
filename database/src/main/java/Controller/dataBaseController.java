@@ -4,6 +4,8 @@ import Model.BPlusTree;
 import Model.Database;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class dataBaseController {
@@ -27,8 +29,8 @@ public class dataBaseController {
 
 
     }
-    public  String getCapital(){
-        return table.getCapital().toString();
+    public List<String> getCapital(){
+        return table.getCapital();
     }
     public static Controller.dataBaseController getDBController() {
         if(dataBaseCo==null){
@@ -42,6 +44,17 @@ public class dataBaseController {
         table.insert(key,arr);
         return "row added"+"\n"+" data is :"+ Arrays.toString(table.search(key));
 
+    }
+    public String deleteRow(String str){
+        if(table.search(str)!=null){
+            table.delete(str);
+            return "row deleted";
+        }else{
+            return "row not found";
+        }
+    }
+    public String keyBase(){
+       return table.getKeyBase();
     }
 
 

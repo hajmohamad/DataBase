@@ -28,6 +28,10 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
         return tableName;
     }
 
+    public String getKeyBase() {
+        return keyBase;
+    }
+
     public static enum RangePolicy {
         EXCLUSIVE, INCLUSIVE
     }

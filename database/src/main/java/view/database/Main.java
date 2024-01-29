@@ -28,12 +28,15 @@ public class Main {
        System.out.println( dBController.choseTable(name));
    }
    public static void addRow(){
-       System.out.println(dBController.getCapital());
+       System.out.println(dBController.getCapital().toString());
        System.out.println("enter new Data");
-       String str=sc.nextLine();
-       System.out.println(dBController.addRow(str));
-
-
+       String addOrder =sc.nextLine();
+       System.out.println(dBController.addRow(addOrder));
+   }
+   public static void deleteRow(){
+       System.out.println("enter row to delete"+" based delete is "+dBController.keyBase());
+       String deleteOrder=sc.nextLine();
+       System.out.println(dBController.deleteRow(deleteOrder));
    }
 
 
@@ -43,6 +46,8 @@ public class Main {
         addTable();
         choseTable();
         addRow();
+        deleteRow();
+
 
 
 
