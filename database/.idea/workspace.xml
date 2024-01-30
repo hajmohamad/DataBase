@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0aafcc38-bf7e-4251-85d3-e0f71959c2bb" name="Changes" comment="add change base method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/dataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/dataBaseController.java" afterDir="false" />
+=======
+>>>>>>> master
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/BPlusTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/database/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/database/Main.java" afterDir="false" />
     </list>
@@ -15,6 +18,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -178,4 +182,23 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+=======
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "hajmohamad"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4b876f13-9dd4-459b-b797-28dff427950c" />
+        <option name="url" value="https://github.com/UI-DS-02/btree-hajmohamad" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+>>>>>>> master
 </project>
