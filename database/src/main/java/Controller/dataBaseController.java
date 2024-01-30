@@ -105,12 +105,12 @@ public class dataBaseController {
         }
        String capitals="";
        for(String str:table.getCapital()){
-           capitals+=" "+ str;
+           capitals+=str+" ";
        }
 
         BPlusTree<String,String[]> newTable=new BPlusTree<>(4,capitals,table.getTableName(),newBase);
       for(String str:table.allKeys()){
-          String[] arr=table.search(str);
+              String[] arr=table.search(str);
           newTable.insert(arr[newIndex],arr);
       }
       tableExists=true;
