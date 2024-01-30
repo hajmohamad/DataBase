@@ -86,6 +86,9 @@ public class Main {
        System.out.println(dBController.changeBase(newKeyBase));
 
    }
+   public static void printBPtree(){
+       System.out.println(dBController.printBPtree());
+   }
 
 
 
@@ -103,7 +106,8 @@ public class Main {
             System.out.println("7. query");
             System.out.println("8. All Rows");
             System.out.println("9. Change Base");
-            System.out.println("10. Exit");
+            System.out.println("10. print bplustree");
+            System.out.println("11. Exit");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
             sc.nextLine();
@@ -137,7 +141,11 @@ public class Main {
                   changeBase();
                     break;
                 case 10 :
-                    exit = true;
+                    printBPtree();
+                    break;
+                case 11 :
+                    System.out.println("Exiting...");
+                       exit = true;
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");

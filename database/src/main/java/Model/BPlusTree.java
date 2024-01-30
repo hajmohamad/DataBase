@@ -2,7 +2,8 @@ package Model;
 
 import java.util.*;
 
-public class BPlusTree<K extends Comparable<? super K>, V> {
+public class BPlusTree<K extends Comparable<? super K>, V>
+{
     private final String keyBase;
     private final int keyBaseIndex;
     private final List<String> Capital;
@@ -124,38 +125,6 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
 
         return sb.toString();
     }
-
-    private abstract class Node {
-        List<K> keys;
-
-        int keyNumber() {
-            return keys.size();
-        }
-
-        abstract V getValue(K key);
-
-        abstract void deleteValue(K key);
-
-        abstract void insertValue(K key, V value);
-
-        abstract K getFirstLeafKey();
-
-        abstract List<V> getRange(K key1, RangePolicy policy1, K key2,
-                                  RangePolicy policy2);
-
-        abstract void merge(Node sibling);
-
-        abstract Node split();
-
-        abstract boolean isOverflow();
-
-        abstract boolean isUnderflow();
-
-        public String toString() {
-            return keys.toString();
-        }
-    }
-
     private class InternalNode extends Node {
         List<Node> children;
 
@@ -295,7 +264,6 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
             return null;
         }
     }
-
     private class LeafNode extends Node {
         List<V> values;
         LeafNode next;
@@ -402,6 +370,36 @@ public class BPlusTree<K extends Comparable<? super K>, V> {
         @Override
         boolean isUnderflow() {
             return values.size() < branchingFactor / 2;
+        }
+    }
+    private abstract class Node {
+        List<K> keys;
+
+        int keyNumber() {
+            return keys.size();
+        }
+
+        abstract V getValue(K key);
+
+        abstract void deleteValue(K key);
+
+        abstract void insertValue(K key, V value);
+
+        abstract K getFirstLeafKey();
+
+        abstract List<V> getRange(K key1, RangePolicy policy1, K key2,
+                                  RangePolicy policy2);
+
+        abstract void merge(Node sibling);
+
+        abstract Node split();
+
+        abstract boolean isOverflow();
+
+        abstract boolean isUnderflow();
+
+        public String toString() {
+            return keys.toString();
         }
     }
 }

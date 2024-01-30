@@ -105,6 +105,11 @@ public class dataBaseController {
        base.addTable(table.getTableName(),newTable);
        return "base changed from "+oldBase+" to "+newBase;
     }
+    public String printBPtree(){
+
+        return table.toString();
+
+    }
 
 
 
