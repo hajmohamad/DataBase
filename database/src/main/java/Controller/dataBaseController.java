@@ -6,15 +6,25 @@ import Model.Database;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class dataBaseController {
 
     private static dataBaseController dataBaseCo;
     private   BPlusTree<String,String[]> table;
     private static    Database base;
+    boolean tableExists;
+    public boolean tableExists(){
+       return tableExists;
+    }
+    public String getTableName(){
+        return table.getTableName();
+    }
 
     public  String addTable(String name, String capital,String keyBase) {
         base.addTable(name, new BPlusTree<>(4,capital,name,keyBase));
+      tableExists=true;
+      choseTable(name);
         return "table by "+name+" is created"+"\n"+ "capital is " +capital;
     }
     public  String choseTable(String name){
@@ -57,9 +67,12 @@ public class dataBaseController {
     public String keyBase(){
        return table.getKeyBase();
     }
-    public String searchRow(String orderYouSearch){
-        return Arrays.toString(table.search(orderYouSearch));
+    public String[] searchRow(String orderYouSearch){
+        return table.search(orderYouSearch);
 
+    }
+    public void editRow(String key,String[] newData){
+        table.insert(key,newData);
     }
    public String editRow(String key,String capital,String newData){
         String[] value = table.search(key);
@@ -100,6 +113,7 @@ public class dataBaseController {
           String[] arr=table.search(str);
           newTable.insert(arr[newIndex],arr);
       }
+      tableExists=true;
        table=newTable;
        base.addTable(table.getTableName(),newTable);
        return "base changed from "+oldBase+" to "+newBase;
@@ -108,6 +122,14 @@ public class dataBaseController {
 
         return table.toString();
 
+    }
+public Set<String> getTables(){
+        return base.getKeyTables();
+
+}
+public List<String> getAllKey(){
+
+    return table.allKeys();
     }
 
 

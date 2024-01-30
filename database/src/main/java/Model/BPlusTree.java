@@ -9,6 +9,10 @@ public class BPlusTree<K extends Comparable<? super K>, V>
     private final List<String> Capital;
     private final String tableName;
     private final List<K> keyList;
+    public List<K> getAllKeys() {
+        return keyList;
+
+    }
     private final int conterIndex=0;
     private K min;
     private K max;

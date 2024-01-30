@@ -2,6 +2,7 @@ package view.database;
 
 import Controller.dataBaseController;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -41,7 +42,7 @@ public class Main {
        String key=sc.nextLine();
        System.out.println(dBController.getCapital());
        if(dBController.searchRow(key)!=null){
-       System.out.println(dBController.searchRow(key));
+       System.out.println(Arrays.toString(dBController.searchRow(key)));
        System.out.println("which Capital Do you want to edit ?");
        String capt=sc.nextLine();
        System.out.println("enter new data : ");
