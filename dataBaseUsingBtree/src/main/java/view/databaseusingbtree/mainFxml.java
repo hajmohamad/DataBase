@@ -1,4 +1,4 @@
-package view.database;
+package view.databaseusingbtree;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +17,6 @@ public class mainFxml extends Application {
             Scene  scene = new Scene(fxmlLoader.load(), 1300, 600);
             baseStage.setScene(scene);
 
-            scene.setFill(Color.TRANSPARENT);
-            baseStage.setScene(scene);
 
         } catch (IOException e) {
             throw new RuntimeException(e);

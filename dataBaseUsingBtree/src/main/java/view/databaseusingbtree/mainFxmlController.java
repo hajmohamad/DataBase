@@ -1,8 +1,9 @@
-package view.database;
+package view.databaseusingbtree;
 
 import Controller.dataBaseController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,12 +12,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static view.database.mainFxml.reloadScreen;
+import static view.databaseusingbtree.mainFxml.reloadScreen;
+
 
 public class mainFxmlController  implements Initializable {
     static dataBaseController dBController;
@@ -57,16 +60,16 @@ public class mainFxmlController  implements Initializable {
     void addCapital(){
         {
             Label deleteEditCapital=new Label(" edit / remove ");
-            deleteEditCapital.setStyle("-fx-background-color: #8b8bd1;-fx-background-radius: 15px;  -fx-font-size: 20px;");
+            deleteEditCapital.setStyle("-fx-background-color: #00a8cc;-fx-background-radius: 15px;  -fx-font-size: 20px;");
             HBox.setMargin(deleteEditCapital,new javafx.geometry.Insets(20,10,10,10));
             hbox_capital.getChildren().add(deleteEditCapital);
             for(String capital:dBController.getCapital()){
                 Label lbl=new Label();
                 lbl.setText(" "+capital+" ");
                 if(dBController.keyBase().equals(capital)){
-                    lbl.setStyle("-fx-background-color: #d724ab;-fx-background-radius: 15px; -fx-font-size: 20px;  ");
+                    lbl.setStyle("-fx-background-color: #d724ab; -fx-background-radius: 15px; -fx-font-size: 20px;  ");
                 }else{
-                    lbl.setStyle("-fx-background-color: #8b8bd1;-fx-background-radius: 15px; -fx-font-size: 20px;  ");
+                    lbl.setStyle("-fx-background-color: #00a8cc;-fx-background-radius: 15px; -fx-font-size: 20px;  ");
 
                 }
                 lbl.setOnMouseClicked(e->{
@@ -80,8 +83,11 @@ public class mainFxmlController  implements Initializable {
     void addTable(){
         for(String tableName:dBController.getTables()){
             Label lbl=new Label();
-            lbl.setStyle("-fx-background-color: #8b8bd1;-fx-background-radius: 15px; -fx-font-size: 20px; ");
-            VBox.setMargin(lbl,new javafx.geometry.Insets(20,10,10,19));
+            lbl.setTextAlignment(TextAlignment.CENTER);
+            lbl.alignmentProperty().set(Pos.CENTER);
+            lbl.minHeight(20);
+            lbl.setStyle("-fx-background-color: #8b8bd1; -fx-min-width:150px ;-fx-background-radius: 15px; -fx-font-size: 20px; ");
+            VBox.setMargin(lbl,new javafx.geometry.Insets(20,10,10,10));
             lbl.setText(tableName);
             lbl.setOnMouseClicked(e->{
                 dBController.choseTable(tableName);
@@ -112,10 +118,10 @@ public class mainFxmlController  implements Initializable {
 
                 if(i%2==0) {
                     i++;
-                    dataValues.setStyle("-fx-background-color: #d9d9ec;-fx-background-radius: 15px; -fx-font-size: 14px;  -fx-margin: 3px 0 0 4px;");
+                    dataValues.setStyle("-fx-background-color: #222831;-fx-background-radius: 15px; -fx-font-size: 14px;  -fx-margin: 3px 0 0 4px;");
                 }else {
                     i++;
-                    dataValues.setStyle("-fx-background-color: #7a7a97;-fx-background-radius: 15px; -fx-font-size: 14px;  -fx-margin: 3px 0 0 4px;");
+                    dataValues.setStyle("-fx-background-color: #393e46;-fx-background-radius: 15px; -fx-font-size: 14px;  -fx-margin: 3px 0 0 4px;");
                 }
 
             ArrayList<TextField> textFields = new ArrayList<>();
@@ -138,11 +144,13 @@ public class mainFxmlController  implements Initializable {
             });
             delete.setOnMouseClicked(e->{
                 dBController.deleteRow(key);
-                reloadScreen();
+                System.out.println(dBController.allRows().length());
+                vbox_tableData.getChildren().remove(dataValues);
+//                reloadScreen();
 
             });
-            System.out.println(textFields.get(0).getPrefWidth());
             dataValues.prefWidth(textFields.get(0).getPrefWidth()*textFields.size());
+            VBox.setMargin(dataValues,new javafx.geometry.Insets(10,4,4,10));
             vbox_tableData.getChildren().add(dataValues);
         }
 
@@ -201,7 +209,9 @@ public class mainFxmlController  implements Initializable {
             //write capital in table
            addCapital();
             //write data in table
-            addDataInTable();
+            if(!dBController.getAllKey().isEmpty()){
+
+            addDataInTable();}
             addNewRow();
 
 

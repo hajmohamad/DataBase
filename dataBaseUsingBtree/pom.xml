@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>view</groupId>
-    <artifactId>database</artifactId>
+    <artifactId>dataBaseUsingBtree</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>database</name>
+    <name>dataBaseUsingBtree</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>view.database/view.database.HelloApplication</mainClass>
+                            <mainClass>view.databaseusingbtree/view.databaseusingbtree.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
